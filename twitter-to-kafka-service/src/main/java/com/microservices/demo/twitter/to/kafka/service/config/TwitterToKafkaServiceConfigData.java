@@ -9,7 +9,8 @@ import java.util.List;
 @Data
 @Configuration
 @ConfigurationProperties("twitter-to-kafka-service")
-public class TwiiterToKafkaServiceConfigData {
+public class TwitterToKafkaServiceConfigData {
     //the name is important, so it should by like in application.yml "-" replaced by Capital char
     private List<String> twitterKeywords;
+    private String welcomeMessage;
 }

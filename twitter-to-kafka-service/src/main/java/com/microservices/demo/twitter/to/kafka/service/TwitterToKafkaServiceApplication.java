@@ -1,17 +1,23 @@
 package com.microservices.demo.twitter.to.kafka.service;
 
-import com.microservices.demo.twitter.to.kafka.service.config.TwiiterToKafkaServiceConfigData;
+import com.microservices.demo.twitter.to.kafka.service.config.TwitterToKafkaServiceConfigData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Arrays;
+
 @SpringBootApplication
 public class TwitterToKafkaServiceApplication implements CommandLineRunner {
 
-    private TwiiterToKafkaServiceConfigData twiiterToKafkaServiceConfigData;
+    private static final Logger LOG = LoggerFactory.getLogger(TwitterToKafkaServiceApplication.class);
+    private final TwitterToKafkaServiceConfigData twitterToKafkaServiceConfigData;
 
-    public TwitterToKafkaServiceApplication(TwiiterToKafkaServiceConfigData configData) {
-        this.twiiterToKafkaServiceConfigData = configData;
+    //Spring doesn't use reflection with constructor injection approach, reflection makes app run lower
+    public TwitterToKafkaServiceApplication(TwitterToKafkaServiceConfigData configData) {
+        this.twitterToKafkaServiceConfigData = configData;
     }
 
     public static void main(String[] args) {
@@ -21,6 +27,8 @@ public class TwitterToKafkaServiceApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Application starts...");
+        LOG.info("Application starts...");
+        LOG.info(Arrays.toString(twitterToKafkaServiceConfigData.getTwitterKeywords().toArray(new String [] {})));
+        LOG.info(twitterToKafkaServiceConfigData.getWelcomeMessage());
     }
 }
