@@ -13,4 +13,9 @@ public class TwitterToKafkaServiceConfigData {
     //the name is important, so it should by like in application.yml "-" replaced by Capital char
     private List<String> twitterKeywords;
     private String welcomeMessage;
+    private Boolean enableMockTweets;
+    private Integer mockMinTweetLength;
+    private Integer mockMaxTweetLength;
+    private Long mockSleepMs;
+
 }

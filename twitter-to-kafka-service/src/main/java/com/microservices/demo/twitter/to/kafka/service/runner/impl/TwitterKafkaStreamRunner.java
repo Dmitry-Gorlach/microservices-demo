@@ -11,9 +11,10 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 
+import javax.annotation.PreDestroy;
 import java.util.Arrays;
 
-@Component
+@Component("twitterKafkaStreamRunner")
 public class TwitterKafkaStreamRunner implements StreamRunner {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterKafkaStreamRunner.class);
@@ -42,5 +43,13 @@ public class TwitterKafkaStreamRunner implements StreamRunner {
         FilterQuery filterQuery = new FilterQuery(keywords);
         twitterStream.filter(filterQuery);
         LOG.info("Starting filtering twitter stream for keywords {}", Arrays.toString(keywords));
+    }
+
+    @PreDestroy
+    public void shutdown() {
+        if(twitterStream != null) {
+            LOG.info("Closing twitter stream.");
+            twitterStream.shutdown();
+        }
     }
 }
