@@ -8,20 +8,24 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 @SpringBootApplication
+@ComponentScan("com.microservices.demo")
+// we can use also @RequiredArgsConstructor,it can be used instead of writing the constructor explicitly.
+// It will create the constructor at runtime and will be less boilerplate code
 public class TwitterToKafkaServiceApplication implements CommandLineRunner {
 
     private static final Logger LOG = LoggerFactory.getLogger(TwitterToKafkaServiceApplication.class);
     private final TwitterToKafkaServiceConfigData twitterToKafkaServiceConfigData;
     private final StreamRunner streamRunner;
 
-    // Spring doesn't use reflection with constructor injection approach, reflection makes app run lower.
+    // Spring doesn't use reflection with constructor injection approach, reflection makes the app run lower.
     // To avoid NoUniqueBeanDefinitionException we can use:
-    // 1) type in constructor the same component name for StreamRunner as TwitterToKafkaStreamRunner or
+    // 1) type in constructor the same component name for StreamRunner as twitterToKafkaStreamRunner or
     // 2) should use Qualifier("twitterKafkaStreamRunner")
 
     // 1) using the same component name
@@ -33,7 +37,7 @@ public class TwitterToKafkaServiceApplication implements CommandLineRunner {
 
     // 2) using @Qualifier("componentName")
     public TwitterToKafkaServiceApplication(TwitterToKafkaServiceConfigData configData,
-                                           @Qualifier("twitterKafkaStreamRunner") StreamRunner runner) {
+                                           @Qualifier("mockKafkaStreamRunner") StreamRunner runner) {
         this.twitterToKafkaServiceConfigData = configData;
         this.streamRunner = runner;
     }
