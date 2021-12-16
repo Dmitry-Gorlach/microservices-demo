@@ -9,6 +9,7 @@
 		<module>kafka/kafka-model</module>
 		<module>kafka/kafka-producer</module>
 		<module>kafka/kafka-admin</module>
+		<module>common-config</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -25,12 +26,23 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<spring.boot.version>2.6.1</spring.boot.version>
+		<spring-boot.version>2.6.1</spring-boot.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<twitter4j.version>4.0.7</twitter4j.version>
 		<lombok.version>1.18.22</lombok.version>
 		<avro.version>1.11.0</avro.version>
+		<spring-kafka.version>2.7.8</spring-kafka.version>
+		<spring-retry.version>1.3.1</spring-retry.version>
+		<spring-webflux.version>2.6.1</spring-webflux.version>
+		<kafka-avro-serializer.version>7.0.1</kafka-avro-serializer.version>
 	</properties>
+
+	<repositories>
+		<repository>
+			<id>confluent</id>
+			<url>https://packages.confluent.io/maven/</url>
+		</repository>
+	</repositories>
 
 <!--allow to define all dependencies without really downloaded them-->
 	<dependencyManagement>
@@ -42,15 +54,41 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>com.microservices.demo</groupId>
+				<artifactId>common-config</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microservices.demo</groupId>
+				<artifactId>kafka-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microservices.demo</groupId>
+				<artifactId>kafka-admin</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microservices.demo</groupId>
+				<artifactId>kafka-producer</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter</artifactId>
-				<version>${spring.boot.version}</version>
+				<version>${spring-boot.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-test</artifactId>
-				<version>${spring.boot.version}</version>
+				<version>${spring-boot.version}</version>
 				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+				</exclusions>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/org.twitter4j/twitter4j-stream -->
 			<dependency>
@@ -69,6 +107,47 @@
 				<groupId>org.apache.avro</groupId>
 				<artifactId>avro</artifactId>
 				<version>${avro.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer -->
+			<dependency>
+				<groupId>io.confluent</groupId>
+				<artifactId>kafka-avro-serializer</artifactId>
+				<version>${kafka-avro-serializer.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>io.swagger</groupId>
+						<artifactId>swagger-annotations</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>io.swagger</groupId>
+						<artifactId>swagger-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka -->
+			<dependency>
+				<groupId>org.springframework.kafka</groupId>
+				<artifactId>spring-kafka</artifactId>
+				<version>${spring-kafka.version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.springframework.retry/spring-retry -->
+			<dependency>
+				<groupId>org.springframework.retry</groupId>
+				<artifactId>spring-retry</artifactId>
+				<version>${spring-retry.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-webflux</artifactId>
+				<version>${spring-webflux.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -94,7 +173,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring.boot.version}</version>
+				<version>${spring-boot.version}</version>
 			</plugin>
 		</plugins>
 		</pluginManagement>

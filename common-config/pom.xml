@@ -6,11 +6,10 @@
         <artifactId>microservices-demo</artifactId>
         <groupId>com.microservices.demo</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-<!--Use spring-kafka to write Kafka producer implementation-->
-    <artifactId>kafka-producer</artifactId>
+
+    <artifactId>common-config</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -23,17 +22,13 @@
             <artifactId>app-config-data</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.microservices.demo</groupId>
-            <artifactId>kafka-model</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka</artifactId>
-        </dependency>
-<!--Note: this artifact is located at Confluent repository (https://packages.confluent.io/maven/)-->
-        <dependency>
-            <groupId>io.confluent</groupId>
-            <artifactId>kafka-avro-serializer</artifactId>
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
         </dependency>
     </dependencies>
+
 </project>

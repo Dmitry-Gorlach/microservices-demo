@@ -30,6 +30,14 @@
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-stream</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.microservices.demo</groupId>
+            <artifactId>kafka-admin</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.microservices.demo</groupId>
+            <artifactId>kafka-producer</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
