@@ -6,7 +6,7 @@ twitter-to-kafka-service:
     - Elasticsearch
     - Kafka
   welcome-message: Hi friend!
-  enable-mock-tweets: false
+  enable-mock-tweets: true
   mock-min-tweet-length: 5
   mock-max-tweet-length: 15
   mock-sleep-ms: 10000
@@ -25,7 +25,7 @@ kafka-config:
   topic-name: twitter-topic
   topic-names-to-create:
     - twitter-topics
-  num-of-parititions: 3
+  num-of-partitions: 3
   replication-factor: 3
 
 kafka-producer-config:
