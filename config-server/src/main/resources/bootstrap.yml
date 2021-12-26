@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: configserver
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Dmitry-Gorlach/spring-cloud-config-server-repository
+          username:
+          password:
+          clone-on-start: true
+    fail-fast: true

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 // It allows you to find Spring beans in other modules, all modules packages start from "com.microservices.demo.{custom}"
-@ComponentScan("com.microservices.demo")
+@ComponentScan(basePackages ="com.microservices.demo")
 // We can use also @RequiredArgsConstructor,it can be used instead of writing the constructor explicitly.
 // It will create the constructor at runtime and will be less boilerplate code
 public class TwitterToKafkaServiceApplication implements CommandLineRunner {
