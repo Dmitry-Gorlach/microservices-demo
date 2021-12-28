@@ -9,10 +9,10 @@ spring:
 #          because github use 'main' branch but spring-cloud 'master' branch by default
           default-label: main
           username: Dmitry-Gorlach
-          password: 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
+          password: ENC(**token from github**)
           clone-on-start: true
     fail-fast: true
   security:
     user:
       name: spring_cloud_user
-      password: springCloud_1
+      password: test1234
