@@ -9,10 +9,11 @@ spring:
 #          because github use 'main' branch but spring-cloud 'master' branch by default
           default-label: main
           username: Dmitry-Gorlach
-          password: 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
+          password: '{cipher}c11ee7d5cfdcb9305f836df0430140439e61aac15752b9de0bfaf69c3130e4149fcdfb29c533e6ff672c90864167f4609130b79d9c1a330761e59a41a54b21b5'
           clone-on-start: true
     fail-fast: true
   security:
     user:
       name: spring_cloud_user
-      password: springCloud_1
+      password: '{cipher}8f3adec33130da287866cd5412ab344b803261f49198fc80aed837a50dfd7175'
+#      we need to add in env ENCRYPT_KEY='..'
