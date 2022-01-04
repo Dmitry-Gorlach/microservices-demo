@@ -3,5 +3,5 @@ server:
 
 logging:
   level:
-    root: DEBUG
+    root: INFO
     org.spring.framework.cloud.config: DEBUG

@@ -4,14 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 	<modules>
 		<module>twitter-to-kafka-service</module>
-        <module>app-config-data</module>
+		<module>app-config-data</module>
 		<module>kafka</module>
 		<module>kafka/kafka-model</module>
 		<module>kafka/kafka-admin</module>
 		<module>kafka/kafka-producer</module>
+		<module>kafka/kafka-consumer</module>
 		<module>common-config</module>
-        <module>config-server</module>
-    </modules>
+		<module>config-server</module>
+		<module>kafka-to-elastic-service</module>
+	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -52,6 +54,11 @@
 			<!--LOCAL-->
 			<dependency>
 				<groupId>com.microservices.demo</groupId>
+				<artifactId>kafka-consumer</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.microservices.demo</groupId>
 				<artifactId>app-config-data</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -75,6 +82,7 @@
 				<artifactId>kafka-producer</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter</artifactId>
@@ -87,9 +95,9 @@
 				<scope>test</scope>
 				<exclusions>
 					<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
+						<groupId>org.junit.vintage</groupId>
+						<artifactId>junit-vintage-engine</artifactId>
+					</exclusion>
 				</exclusions>
 			</dependency>
 			<!-- https://mvnrepository.com/artifact/org.twitter4j/twitter4j-stream -->
@@ -165,6 +173,11 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-security</artifactId>
+				<version>${spring-boot.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -185,13 +198,13 @@
 
 <!--		subservices will override this pluginManagement properties by itself-->
 		<pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${spring-boot.version}</version>
-			</plugin>
-		</plugins>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>${spring-boot.version}</version>
+				</plugin>
+			</plugins>
 		</pluginManagement>
 	</build>
 
