@@ -16,4 +16,7 @@ spring:
     user:
       name: spring_cloud_user
       password:
-#      we need to add in env ENCRYPT_KEY='..'
+
+#encrypt:
+#  key:
+#      we need to add in env ENCRYPT_KEY='..' for security reasons
